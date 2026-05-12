@@ -14,7 +14,6 @@
     --border-strong: #c8c2b8;
     --text: #1a1916;
     --text-muted: #7a7670;
-    --text-faint: #b0ac a6;
     --accent: #2a5cff;
     --accent-bg: #eef1ff;
     --green: #1a6644;
@@ -42,10 +41,8 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Layout */
   .app { max-width: 680px; margin: 0 auto; padding: 24px 16px 80px; }
 
-  /* Header */
   .header { margin-bottom: 24px; }
   .header-top { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; }
   .logo { font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.04em; }
@@ -53,192 +50,82 @@
   .header-title { font-size: 26px; font-weight: 300; color: var(--text); letter-spacing: -0.02em; }
   .header-title strong { font-weight: 500; }
 
-  /* Stats */
   .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 20px; }
-  .stat {
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 12px;
-  }
+  .stat { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 12px; }
   .stat-val { font-family: var(--mono); font-size: 20px; font-weight: 500; color: var(--text); line-height: 1; }
   .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 
-  /* Controls */
   .controls { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
   .search-wrap { flex: 1; min-width: 140px; position: relative; }
-  .search-wrap input {
-    width: 100%;
-    height: 36px;
-    padding: 0 12px 0 34px;
-    border: 0.5px solid var(--border-strong);
-    border-radius: var(--radius-sm);
-    background: var(--surface);
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--text);
-    outline: none;
-  }
+  .search-wrap input { width: 100%; height: 36px; padding: 0 12px 0 34px; border: 0.5px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface); font-family: var(--sans); font-size: 13px; color: var(--text); outline: none; }
   .search-wrap input:focus { border-color: var(--accent); }
   .search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 15px; pointer-events: none; }
-  .btn {
-    height: 36px;
-    padding: 0 14px;
-    border: 0.5px solid var(--border-strong);
-    border-radius: var(--radius-sm);
-    background: var(--surface);
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--text-muted);
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    transition: all 0.12s;
-  }
-  .btn:hover { background: var(--bg); color: var(--text); border-color: var(--border-strong); }
+  .btn { height: 36px; padding: 0 14px; border: 0.5px solid var(--border-strong); border-radius: var(--radius-sm); background: var(--surface); font-family: var(--sans); font-size: 13px; color: var(--text-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; transition: all 0.12s; }
+  .btn:hover { background: var(--bg); color: var(--text); }
   .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 500; }
   .btn.primary:hover { opacity: 0.82; }
+  .btn.active { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 500; }
   .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-  .btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
 
-  /* Tabs */
   .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--border); margin-bottom: 14px; }
-  .tab {
-    font-family: var(--sans);
-    font-size: 13px;
-    padding: 8px 14px;
-    border: none;
-    border-bottom: 2px solid transparent;
-    background: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    margin-bottom: -1px;
-    transition: all 0.1s;
-  }
+  .tab { font-family: var(--sans); font-size: 13px; padding: 8px 14px; border: none; border-bottom: 2px solid transparent; background: none; color: var(--text-muted); cursor: pointer; margin-bottom: -1px; transition: all 0.1s; }
   .tab:hover { color: var(--text); }
   .tab.active { color: var(--text); border-bottom-color: var(--text); font-weight: 500; }
 
-  /* Hood filters */
   .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
   .filter-label { font-size: 11px; color: var(--text-muted); font-family: var(--mono); letter-spacing: 0.04em; margin-right: 2px; }
-  .hood-btn {
-    font-size: 12px;
-    padding: 4px 10px;
-    border: 0.5px solid var(--border);
-    border-radius: 99px;
-    background: var(--surface);
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.1s;
-    font-family: var(--sans);
-  }
+  .hood-btn { font-size: 12px; padding: 4px 10px; border: 0.5px solid var(--border); border-radius: 99px; background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.1s; font-family: var(--sans); }
   .hood-btn:hover { border-color: var(--border-strong); color: var(--text); }
   .hood-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
 
-  /* Banners */
   .banner { padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px; }
   .banner-error { background: var(--red-bg); color: var(--red); border: 0.5px solid #f5c0c0; }
-  .banner-info { background: var(--accent-bg); color: #1a3daa; border: 0.5px solid #c0ccf5; }
-  .banner-icon { flex-shrink: 0; margin-top: 1px; }
 
-  /* Source section */
   .source-section { margin-bottom: 20px; }
-  .source-header {
-    font-family: var(--mono);
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+  .source-header { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
 
-  /* Listings */
-  .listing {
-    background: var(--surface);
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    margin-bottom: 6px;
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    transition: border-color 0.1s;
-  }
+  .listing { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 6px; display: flex; gap: 12px; align-items: flex-start; transition: border-color 0.1s; }
   .listing:hover { border-color: var(--border-strong); }
   .listing.seen { opacity: 0.35; }
   .listing-body { flex: 1; min-width: 0; }
-  .listing-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 7px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  .listing-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 7px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .listing-title a { color: inherit; text-decoration: none; }
   .listing-title a:hover { text-decoration: underline; }
   .listing-meta { display: flex; gap: 5px; flex-wrap: wrap; }
-  .badge {
-    font-size: 11px;
-    font-family: var(--mono);
-    padding: 2px 7px;
-    border-radius: 4px;
-  }
+  .badge { font-size: 11px; font-family: var(--mono); padding: 2px 7px; border-radius: 4px; }
   .badge-hood { background: var(--green-bg); color: var(--green); }
   .badge-price { background: var(--purple-bg); color: var(--purple); }
   .badge-date { background: var(--bg); color: var(--text-muted); border: 0.5px solid var(--border); }
   .badge-avail { background: var(--amber-bg); color: var(--amber); }
 
-  /* Action buttons */
   .listing-actions { display: flex; gap: 5px; flex-shrink: 0; padding-top: 1px; }
-  .icon-btn {
-    width: 28px;
-    height: 28px;
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-sm);
-    background: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
-    font-size: 14px;
-    transition: all 0.1s;
-  }
+  .icon-btn { width: 28px; height: 28px; border: 0.5px solid var(--border); border-radius: var(--radius-sm); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 14px; transition: all 0.1s; }
   .icon-btn:hover { background: var(--bg); color: var(--text); border-color: var(--border-strong); }
   .icon-btn.saved { color: var(--accent); border-color: var(--accent); background: var(--accent-bg); }
 
-  /* Empty/loading */
   .empty { text-align: center; padding: 48px 16px; color: var(--text-muted); font-size: 14px; }
   .empty-icon { font-size: 32px; margin-bottom: 12px; opacity: 0.4; }
 
-  /* Spinner */
-  .spinner {
-    display: inline-block;
-    width: 13px; height: 13px;
-    border: 2px solid rgba(255,255,255,0.3);
-    border-top-color: currentColor;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
-    vertical-align: -2px;
-  }
+  .spinner { display: inline-block; width: 13px; height: 13px; border: 2px solid rgba(255,255,255,0.3); border-top-color: currentColor; border-radius: 50%; animation: spin 0.6s linear infinite; vertical-align: -2px; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* Status */
   .status-msg { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-bottom: 12px; min-height: 16px; }
 
-  /* Mobile tweaks */
-  @media (max-width: 480px) {
+  .manual-section { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
+  .manual-header { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+  .manual-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .manual-group { display: flex; flex-direction: column; gap: 2px; }
+  .manual-source { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 8px; font-family: var(--mono); letter-spacing: 0.02em; }
+  .manual-link { font-size: 13px; color: var(--text); text-decoration: none; padding: 6px 8px; border-radius: var(--radius-sm); display: flex; justify-content: space-between; align-items: center; border: 0.5px solid transparent; transition: all 0.1s; gap: 8px; }
+  .manual-link:hover { background: var(--accent-bg); border-color: #c0ccf5; color: var(--accent); }
+  .manual-arrow { font-size: 11px; color: var(--text-muted); opacity: 0.4; flex-shrink: 0; }
+  .manual-link:hover .manual-arrow { opacity: 1; color: var(--accent); }
+
+  @media (max-width: 520px) {
     .stats { grid-template-columns: repeat(2, 1fr); }
     .header-title { font-size: 22px; }
     .controls { gap: 6px; }
+    .manual-grid { grid-template-columns: 1fr; gap: 28px; }
   }
 </style>
 </head>
@@ -293,13 +180,58 @@
   <div id="listings-area">
     <div class="empty">
       <div class="empty-icon">⌂</div>
-      <div>Hit <strong>Refresh</strong> to load listings from Reddit, Craigslist, and SpareRoom</div>
+      <div>Hit <strong>Refresh</strong> to load listings from Reddit</div>
+    </div>
+  </div>
+
+  <div class="manual-section">
+    <div class="manual-header">Browse manually each morning</div>
+    <div class="manual-grid">
+
+      <div class="manual-group">
+        <div class="manual-source">Craigslist</div>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&sort=date" target="_blank" rel="noopener">Brooklyn (all) <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/que/roo?max_price=2100&sort=date" target="_blank" rel="noopener">Queens (all) <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=williamsburg&sort=date" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=bushwick&sort=date" target="_blank" rel="noopener">Bushwick <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=bed+stuy&sort=date" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=greenpoint&sort=date" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=crown+heights&sort=date" target="_blank" rel="noopener">Crown Heights <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/que/roo?max_price=2100&query=ridgewood&sort=date" target="_blank" rel="noopener">Ridgewood <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/que/roo?max_price=2100&query=astoria&sort=date" target="_blank" rel="noopener">Astoria <span class="manual-arrow">↗</span></a>
+      </div>
+
+      <div class="manual-group">
+        <div class="manual-source">SpareRoom</div>
+        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn?max_rent=2000&search_type=rooms&offered_by=private&rooms_for=1&sort_by=posted_date" target="_blank" rel="noopener">Brooklyn (newest) <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/queens?max_rent=2000&search_type=rooms&offered_by=private&rooms_for=1&sort_by=posted_date" target="_blank" rel="noopener">Queens (newest) <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn/williamsburg?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn/bushwick?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Bushwick <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn/bedford-stuyvesant?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn/greenpoint?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/queens/ridgewood?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Ridgewood <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/queens/astoria?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Astoria <span class="manual-arrow">↗</span></a>
+      </div>
+
+      <div class="manual-group">
+        <div class="manual-source">Facebook Groups</div>
+        <a class="manual-link" href="https://www.facebook.com/groups/nycapartments" target="_blank" rel="noopener">NYC Apartments &amp; Roommates <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.facebook.com/groups/NYCroommates" target="_blank" rel="noopener">NYC Roommates <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.facebook.com/groups/brooklynroommates" target="_blank" rel="noopener">Brooklyn Roommates <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.facebook.com/groups/bushwickapartments" target="_blank" rel="noopener">Bushwick Apartments <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.facebook.com/groups/ridgewoodny" target="_blank" rel="noopener">Ridgewood NY Community <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.facebook.com/groups/williamsburgnorth" target="_blank" rel="noopener">Williamsburg/N. Brooklyn <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.facebook.com/groups/crownheightsbrooklyn" target="_blank" rel="noopener">Crown Heights Brooklyn <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.facebook.com/groups/greenpointers" target="_blank" rel="noopener">Greenpointers <span class="manual-arrow">↗</span></a>
+      </div>
+
     </div>
   </div>
 
 </div>
 
 <script>
+const PROXY = 'https://nyc-room-proxy.jwilso48.workers.dev';
 const HOODS = ['ridgewood','bed-stuy','williamsburg','bushwick','greenpoint','crown heights','astoria'];
 const MAX_PRICE = 2100;
 
@@ -391,8 +323,6 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric'});
 }
 
-const PROXY = 'https://nyc-room-proxy.jwilso48.workers.dev';
-
 async function proxyFetch(url) {
   const r = await fetch(`${PROXY}?url=${encodeURIComponent(url)}`);
   if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -411,8 +341,7 @@ async function fetchReddit() {
       if (!hood) continue;
       const price = detectPrice(full);
       if (price && price > MAX_PRICE) continue;
-      const tl = full.toLowerCase();
-      if (!tl.match(/room|roommate|looking|available|seeking|sublet/)) continue;
+      if (!/room|roommate|looking|available|seeking|sublet/i.test(full)) continue;
       results.push({
         id: 'rd_' + post.id,
         title: post.title,
@@ -427,74 +356,6 @@ async function fetchReddit() {
   return results;
 }
 
-async function fetchCraigslist() {
-  const results = [];
-  const seen = new Set();
-  const urls = [
-    'https://newyork.craigslist.org/search/roo?format=rss&max_price=2100',
-    'https://newyork.craigslist.org/search/brk/roo?format=rss&max_price=2100',
-    'https://newyork.craigslist.org/search/que/roo?format=rss&max_price=2100',
-  ];
-  for (const clUrl of urls) {
-    try {
-      const r = await proxyFetch(clUrl);
-      const text = await r.text();
-      const xml = new DOMParser().parseFromString(text, 'text/xml');
-      for (const item of xml.querySelectorAll('item')) {
-        const title = item.querySelector('title')?.textContent||'';
-        const link = item.querySelector('link')?.textContent||'';
-        const desc = item.querySelector('description')?.textContent||'';
-        const pubDate = item.querySelector('pubDate')?.textContent||'';
-        if (seen.has(link)) continue;
-        seen.add(link);
-        const full = title + ' ' + desc;
-        const hood = detectHood(full);
-        if (!hood) continue;
-        const price = detectPrice(full);
-        if (price && price > MAX_PRICE) continue;
-        results.push({
-          id: 'cl_' + btoa(encodeURIComponent(link)).slice(0,16),
-          title: title.replace(/\s*[-–]\s*\$\d+.*/, '').trim(),
-          price, hood, link, source: 'craigslist',
-          date: pubDate ? new Date(pubDate).toISOString() : new Date().toISOString(),
-          avail: detectAvailability(full)
-        });
-      }
-    } catch(e) { continue; }
-  }
-  return results;
-}
-
-async function fetchSpareRoom() {
-  const results = [];
-  try {
-    const srUrl = 'https://www.spareroom.com/flatshare/new_york_city/brooklyn?max_rent=2100&search_type=rooms&offered_by=private&rooms_for=1';
-    const r = await proxyFetch(srUrl);
-    const text = await r.text();
-    const doc = new DOMParser().parseFromString(text, 'text/html');
-    doc.querySelectorAll('article, li.listing-result').forEach((el, i) => {
-      const titleEl = el.querySelector('h2, h3, strong');
-      const title = titleEl?.textContent?.trim();
-      if (!title) return;
-      const full = el.textContent||'';
-      const hood = detectHood(full);
-      if (!hood) return;
-      const price = detectPrice(full);
-      if (price && price > MAX_PRICE) return;
-      const linkEl = el.querySelector('a[href]');
-      const href = linkEl?.getAttribute('href')||'';
-      const link = href.startsWith('http') ? href : 'https://www.spareroom.com' + href;
-      results.push({
-        id: 'sr_' + i + '_' + Date.now(),
-        title, price, hood, link, source: 'spareroom',
-        date: new Date().toISOString(),
-        avail: detectAvailability(full)
-      });
-    });
-  } catch(e) {}
-  return results;
-}
-
 async function fetchAll() {
   const btn = document.getElementById('refresh-btn');
   btn.innerHTML = '<span class="spinner"></span> Fetching…';
@@ -502,21 +363,11 @@ async function fetchAll() {
   document.getElementById('error-area').innerHTML = '';
   document.getElementById('status-msg').textContent = 'Loading…';
 
-  const [rdRes, clRes, srRes] = await Promise.allSettled([
-    fetchReddit(), fetchCraigslist(), fetchSpareRoom()
-  ]);
+  let fresh = [];
+  let errMsg = null;
 
-  const fresh = [];
-  const errors = [], infos = [];
-
-  if (rdRes.status === 'fulfilled') fresh.push(...rdRes.value);
-  else errors.push('Reddit — ' + (rdRes.reason?.message||'failed'));
-
-  if (clRes.status === 'fulfilled') fresh.push(...clRes.value);
-  else infos.push('Craigslist (proxy issue — try again later)');
-
-  if (srRes.status === 'fulfilled' && srRes.value.length > 0) fresh.push(...srRes.value);
-  else infos.push('SpareRoom (browse manually at spareroom.com)');
+  try { fresh = await fetchReddit(); }
+  catch(e) { errMsg = 'Reddit fetch failed — ' + e.message; }
 
   const existingIds = new Set(allListings.map(l => l.id));
   let added = 0;
@@ -535,13 +386,12 @@ async function fetchAll() {
   } catch(e) {}
 
   const now = new Date();
-  document.getElementById('last-fetch').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-  document.getElementById('status-msg').textContent = added > 0 ? added + ' new listing' + (added===1?'':'s') + ' added' : 'No new listings since last refresh';
+  document.getElementById('last-fetch').textContent = now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('status-msg').textContent = errMsg ? errMsg
+    : added > 0 ? added + ' new listing' + (added===1?'':'s') + ' added'
+    : 'No new listings since last refresh';
 
-  let banners = '';
-  if (errors.length) banners += `<div class="banner banner-error"><span class="banner-icon">⚠</span><span>Failed to load: ${errors.join('; ')}</span></div>`;
-  if (infos.length) banners += `<div class="banner banner-info"><span class="banner-icon">ℹ</span><span>Partial results — ${infos.join('; ')}</span></div>`;
-  document.getElementById('error-area').innerHTML = banners;
+  if (errMsg) document.getElementById('error-area').innerHTML = `<div class="banner banner-error">⚠ ${errMsg}</div>`;
 
   btn.innerHTML = '↻ Refresh';
   btn.disabled = false;
@@ -556,7 +406,7 @@ function getFiltered() {
     if (activeTab === 'jun15' && l.avail !== 'jun15' && l.avail !== 'jun1') return false;
     if (activeHood !== 'all' && l.hood !== activeHood) return false;
     if (searchQuery) {
-      const hay = (l.title + ' ' + (l.hood||'') + ' ' + l.source).toLowerCase();
+      const hay = (l.title + ' ' + (l.hood||'')).toLowerCase();
       if (!hay.includes(searchQuery)) return false;
     }
     return true;
@@ -573,52 +423,32 @@ function renderListings() {
   const area = document.getElementById('listings-area');
 
   if (!filtered.length) {
-    area.innerHTML = '<div class="empty"><div class="empty-icon">⌂</div><div>No listings match your filters</div></div>';
+    area.innerHTML = '<div class="empty"><div class="empty-icon">⌂</div><div>No listings match — try refreshing or adjusting filters</div></div>';
     return;
   }
 
-  const bySrc = {};
+  let html = '<div class="source-section"><div class="source-header">REDDIT <span style="font-weight:400;opacity:0.6">(' + filtered.length + ')</span></div>';
   for (const l of filtered) {
-    if (!bySrc[l.source]) bySrc[l.source] = [];
-    bySrc[l.source].push(l);
-  }
-
-  const srcMeta = {
-    reddit:     { label: 'REDDIT' },
-    craigslist: { label: 'CRAIGSLIST' },
-    spareroom:  { label: 'SPAREROOM' },
-  };
-
-  let html = '';
-  for (const src of ['reddit','craigslist','spareroom']) {
-    const items = bySrc[src];
-    if (!items?.length) continue;
-    html += `<div class="source-section">
-      <div class="source-header">${srcMeta[src].label} <span style="font-weight:400;opacity:0.6">(${items.length})</span></div>`;
-    for (const l of items) {
-      const isSeen = seenIds.has(l.id);
-      const isSaved = savedIds.has(l.id);
-      const availLabel = l.avail === 'jun1' ? 'by Jun 1' : l.avail === 'jun15' ? 'by Jun 15' : '';
-      html += `<div class="listing${isSeen?' seen':''}" id="l-${l.id}">
-        <div class="listing-body">
-          <div class="listing-title"><a href="${l.link}" target="_blank" rel="noopener">${l.title}</a></div>
-          <div class="listing-meta">
-            ${l.hood ? `<span class="badge badge-hood">${l.hood}</span>` : ''}
-            ${l.price ? `<span class="badge badge-price">$${l.price}/mo</span>` : ''}
-            ${availLabel ? `<span class="badge badge-avail">${availLabel}</span>` : ''}
-            <span class="badge badge-date">${formatDate(l.date)}</span>
-          </div>
+    const isSeen = seenIds.has(l.id);
+    const isSaved = savedIds.has(l.id);
+    const availLabel = l.avail === 'jun1' ? 'by Jun 1' : l.avail === 'jun15' ? 'by Jun 15' : '';
+    html += `<div class="listing${isSeen?' seen':''}" id="l-${l.id}">
+      <div class="listing-body">
+        <div class="listing-title"><a href="${l.link}" target="_blank" rel="noopener">${l.title}</a></div>
+        <div class="listing-meta">
+          ${l.hood?`<span class="badge badge-hood">${l.hood}</span>`:''}
+          ${l.price?`<span class="badge badge-price">$${l.price}/mo</span>`:''}
+          ${availLabel?`<span class="badge badge-avail">${availLabel}</span>`:''}
+          <span class="badge badge-date">${formatDate(l.date)}</span>
         </div>
-        <div class="listing-actions">
-          <button class="icon-btn${isSaved?' saved':''}" onclick="toggleSave('${l.id}')" title="${isSaved?'Unsave':'Save'}">
-            ${isSaved ? '★' : '☆'}
-          </button>
-          <button class="icon-btn" onclick="markSeen('${l.id}')" title="Dismiss">✕</button>
-        </div>
-      </div>`;
-    }
-    html += '</div>';
+      </div>
+      <div class="listing-actions">
+        <button class="icon-btn${isSaved?' saved':''}" onclick="toggleSave('${l.id}')" title="${isSaved?'Unsave':'Save'}">${isSaved?'★':'☆'}</button>
+        <button class="icon-btn" onclick="markSeen('${l.id}')" title="Dismiss">✕</button>
+      </div>
+    </div>`;
   }
+  html += '</div>';
   area.innerHTML = html;
 }
 
@@ -635,10 +465,7 @@ function toggleSave(id) {
   else savedIds.add(id);
   savePersist();
   const btn = document.querySelector(`#l-${id} .icon-btn`);
-  if (btn) {
-    btn.classList.toggle('saved', savedIds.has(id));
-    btn.textContent = savedIds.has(id) ? '★' : '☆';
-  }
+  if (btn) { btn.classList.toggle('saved', savedIds.has(id)); btn.textContent = savedIds.has(id)?'★':'☆'; }
   document.getElementById('stat-saved').textContent = savedIds.size;
 }
 
@@ -648,3 +475,4 @@ renderListings();
 </script>
 </body>
 </html>
+
