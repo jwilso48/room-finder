@@ -2,13 +2,12 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "nyc-room-proxy",
   "compatibility_date": "2026-05-12",
+  "main": "worker.js",
   "observability": {
     "enabled": true
-  },
-  "assets": {
-    "directory": "."
   },
   "compatibility_flags": [
     "nodejs_compat"
   ]
 }
+
