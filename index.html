@@ -391,13 +391,18 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric'});
 }
 
+const PROXY = 'https://nyc-room-proxy.jwilso48.workers.dev';
+
+async function proxyFetch(url) {
+  const r = await fetch(`${PROXY}?url=${encodeURIComponent(url)}`);
+  if (!r.ok) throw new Error('HTTP ' + r.status);
+  return r;
+}
+
 async function fetchReddit() {
   const results = [];
   for (const sub of ['NYCroommates','nycapartments']) {
-    const r = await fetch(`https://www.reddit.com/r/${sub}/new.json?limit=50`, {
-      headers: { 'Accept': 'application/json' }
-    });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const r = await proxyFetch(`https://www.reddit.com/r/${sub}/new.json?limit=50`);
     const d = await r.json();
     for (const p of (d?.data?.children||[])) {
       const post = p.data;
@@ -432,12 +437,9 @@ async function fetchCraigslist() {
   ];
   for (const clUrl of urls) {
     try {
-      const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(clUrl)}`;
-      const r = await fetch(proxy);
-      if (!r.ok) continue;
-      const d = await r.json();
-      if (!d.contents) continue;
-      const xml = new DOMParser().parseFromString(d.contents, 'text/xml');
+      const r = await proxyFetch(clUrl);
+      const text = await r.text();
+      const xml = new DOMParser().parseFromString(text, 'text/xml');
       for (const item of xml.querySelectorAll('item')) {
         const title = item.querySelector('title')?.textContent||'';
         const link = item.querySelector('link')?.textContent||'';
@@ -467,12 +469,9 @@ async function fetchSpareRoom() {
   const results = [];
   try {
     const srUrl = 'https://www.spareroom.com/flatshare/new_york_city/brooklyn?max_rent=2100&search_type=rooms&offered_by=private&rooms_for=1';
-    const proxy = `https://api.allorigins.win/get?url=${encodeURIComponent(srUrl)}`;
-    const r = await fetch(proxy);
-    if (!r.ok) return results;
-    const d = await r.json();
-    if (!d.contents) return results;
-    const doc = new DOMParser().parseFromString(d.contents, 'text/html');
+    const r = await proxyFetch(srUrl);
+    const text = await r.text();
+    const doc = new DOMParser().parseFromString(text, 'text/html');
     doc.querySelectorAll('article, li.listing-result').forEach((el, i) => {
       const titleEl = el.querySelector('h2, h3, strong');
       const title = titleEl?.textContent?.trim();
