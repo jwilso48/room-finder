@@ -166,13 +166,12 @@
   <div class="filters">
     <span class="filter-label">hood:</span>
     <button class="hood-btn active" onclick="toggleHood('all',this)">all</button>
+    <button class="hood-btn" onclick="toggleHood('bushwick',this)">bushwick</button>
     <button class="hood-btn" onclick="toggleHood('ridgewood',this)">ridgewood</button>
     <button class="hood-btn" onclick="toggleHood('bed-stuy',this)">bed-stuy</button>
-    <button class="hood-btn" onclick="toggleHood('williamsburg',this)">williamsburg</button>
-    <button class="hood-btn" onclick="toggleHood('bushwick',this)">bushwick</button>
+    <button class="hood-btn" onclick="toggleHood('clinton hill',this)">clinton hill</button>
     <button class="hood-btn" onclick="toggleHood('greenpoint',this)">greenpoint</button>
-    <button class="hood-btn" onclick="toggleHood('crown heights',this)">crown heights</button>
-    <button class="hood-btn" onclick="toggleHood('astoria',this)">astoria</button>
+    <button class="hood-btn" onclick="toggleHood('williamsburg',this)">williamsburg</button>
   </div>
 
   <div class="status-msg" id="status-msg"></div>
@@ -190,27 +189,22 @@
 
       <div class="manual-group">
         <div class="manual-source">Craigslist</div>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&sort=date" target="_blank" rel="noopener">Brooklyn (all) <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/que/roo?max_price=2100&sort=date" target="_blank" rel="noopener">Queens (all) <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=williamsburg&sort=date" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
         <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=bushwick&sort=date" target="_blank" rel="noopener">Bushwick <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=bed+stuy&sort=date" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=greenpoint&sort=date" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=crown+heights&sort=date" target="_blank" rel="noopener">Crown Heights <span class="manual-arrow">↗</span></a>
         <a class="manual-link" href="https://newyork.craigslist.org/search/que/roo?max_price=2100&query=ridgewood&sort=date" target="_blank" rel="noopener">Ridgewood <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/que/roo?max_price=2100&query=astoria&sort=date" target="_blank" rel="noopener">Astoria <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=bed+stuy&sort=date" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=clinton+hill&sort=date" target="_blank" rel="noopener">Clinton Hill <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=greenpoint&sort=date" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=williamsburg&sort=date" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
       </div>
 
       <div class="manual-group">
         <div class="manual-source">SpareRoom</div>
-        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn?max_rent=2000&search_type=rooms&offered_by=private&rooms_for=1&sort_by=posted_date" target="_blank" rel="noopener">Brooklyn (newest) <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/queens?max_rent=2000&search_type=rooms&offered_by=private&rooms_for=1&sort_by=posted_date" target="_blank" rel="noopener">Queens (newest) <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn/williamsburg?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn/bushwick?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Bushwick <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn/bedford-stuyvesant?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/brooklyn/greenpoint?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/queens/ridgewood?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Ridgewood <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/flatshare/new_york_city/queens/astoria?max_rent=2000&search_type=rooms&offered_by=private" target="_blank" rel="noopener">Astoria <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085484&search_type=offered&mode=edit&editing=500085085484" target="_blank" rel="noopener">Bushwick <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085421&search_type=offered&mode=edit&editing=500085085421" target="_blank" rel="noopener">Ridgewood <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085413&search_type=offered&mode=edit&editing=500085085413" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085398&search_type=offered&mode=edit&editing=500085085398" target="_blank" rel="noopener">Clinton Hill <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085581&search_type=offered&mode=edit&editing=500085085581" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085578&search_type=offered&mode=edit&editing=500085085578" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
       </div>
 
       <div class="manual-group">
@@ -221,7 +215,6 @@
         <a class="manual-link" href="https://www.facebook.com/groups/bushwickapartments" target="_blank" rel="noopener">Bushwick Apartments <span class="manual-arrow">↗</span></a>
         <a class="manual-link" href="https://www.facebook.com/groups/ridgewoodny" target="_blank" rel="noopener">Ridgewood NY Community <span class="manual-arrow">↗</span></a>
         <a class="manual-link" href="https://www.facebook.com/groups/williamsburgnorth" target="_blank" rel="noopener">Williamsburg/N. Brooklyn <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.facebook.com/groups/crownheightsbrooklyn" target="_blank" rel="noopener">Crown Heights Brooklyn <span class="manual-arrow">↗</span></a>
         <a class="manual-link" href="https://www.facebook.com/groups/greenpointers" target="_blank" rel="noopener">Greenpointers <span class="manual-arrow">↗</span></a>
       </div>
 
@@ -232,7 +225,7 @@
 
 <script>
 const PROXY = 'https://nyc-room-proxy.jwilso48.workers.dev';
-const HOODS = ['ridgewood','bed-stuy','williamsburg','bushwick','greenpoint','crown heights','astoria'];
+const HOODS = ['bushwick','ridgewood','bed-stuy','clinton hill','greenpoint','williamsburg'];
 const MAX_PRICE = 2100;
 
 let allListings = [];
@@ -297,6 +290,7 @@ function detectHood(text) {
   if (t.includes('wburg') || t.includes('w-burg')) return 'williamsburg';
   if (t.includes('l train') || t.includes('myrtle') || t.includes('knickerbocker')) return 'bushwick';
   if (t.includes('halsey') || t.includes('chauncey') || t.includes('ralph ave')) return 'bed-stuy';
+  if (t.includes('fort greene') || t.includes('pratt')) return 'clinton hill';
   return null;
 }
 
@@ -475,4 +469,3 @@ renderListings();
 </script>
 </body>
 </html>
-
