@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NYC Room Finder</title>
+<title>NYC Apartment Finder</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
 
@@ -49,6 +49,7 @@
   .last-fetch { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
   .header-title { font-size: 26px; font-weight: 300; color: var(--text); letter-spacing: -0.02em; }
   .header-title strong { font-weight: 500; }
+  .header-sub { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
 
   .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 20px; }
   .stat { background: var(--surface); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 12px; }
@@ -72,11 +73,16 @@
   .tab:hover { color: var(--text); }
   .tab.active { color: var(--text); border-bottom-color: var(--text); font-weight: 500; }
 
-  .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; align-items: center; }
   .filter-label { font-size: 11px; color: var(--text-muted); font-family: var(--mono); letter-spacing: 0.04em; margin-right: 2px; }
   .hood-btn { font-size: 12px; padding: 4px 10px; border: 0.5px solid var(--border); border-radius: 99px; background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.1s; font-family: var(--sans); }
   .hood-btn:hover { border-color: var(--border-strong); color: var(--text); }
   .hood-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+
+  .filters-row2 { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+  .beds-btn { font-size: 12px; padding: 4px 10px; border: 0.5px solid var(--border); border-radius: 99px; background: var(--surface); color: var(--text-muted); cursor: pointer; transition: all 0.1s; font-family: var(--sans); }
+  .beds-btn:hover { border-color: var(--border-strong); color: var(--text); }
+  .beds-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
 
   .banner { padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px; }
   .banner-error { background: var(--red-bg); color: var(--red); border: 0.5px solid #f5c0c0; }
@@ -97,6 +103,7 @@
   .badge-price { background: var(--purple-bg); color: var(--purple); }
   .badge-date { background: var(--bg); color: var(--text-muted); border: 0.5px solid var(--border); }
   .badge-avail { background: var(--amber-bg); color: var(--amber); }
+  .badge-beds { background: var(--accent-bg); color: var(--accent); }
 
   .listing-actions { display: flex; gap: 5px; flex-shrink: 0; padding-top: 1px; }
   .icon-btn { width: 28px; height: 28px; border: 0.5px solid var(--border); border-radius: var(--radius-sm); background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 14px; transition: all 0.1s; }
@@ -113,7 +120,7 @@
 
   .manual-section { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--border); }
   .manual-header { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
-  .manual-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .manual-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   .manual-group { display: flex; flex-direction: column; gap: 2px; }
   .manual-source { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 8px; font-family: var(--mono); letter-spacing: 0.02em; }
   .manual-link { font-size: 13px; color: var(--text); text-decoration: none; padding: 6px 8px; border-radius: var(--radius-sm); display: flex; justify-content: space-between; align-items: center; border: 0.5px solid transparent; transition: all 0.1s; gap: 8px; }
@@ -134,10 +141,11 @@
 
   <div class="header">
     <div class="header-top">
-      <span class="logo">NYC ROOM FINDER</span>
+      <span class="logo">NYC APARTMENT FINDER</span>
       <span class="last-fetch" id="last-fetch"></span>
     </div>
-    <div class="header-title">find your <strong>room</strong></div>
+    <div class="header-title">find your <strong>apartment</strong></div>
+    <div class="header-sub">2–3BR · $3k+ total · Bushwick, Ridgewood, Bed-Stuy, Clinton Hill, Greenpoint, Williamsburg</div>
   </div>
 
   <div class="stats">
@@ -174,6 +182,13 @@
     <button class="hood-btn" onclick="toggleHood('williamsburg',this)">williamsburg</button>
   </div>
 
+  <div class="filters-row2">
+    <span class="filter-label">beds:</span>
+    <button class="beds-btn active" onclick="toggleBeds('all',this)">all</button>
+    <button class="beds-btn" onclick="toggleBeds('2',this)">2BR</button>
+    <button class="beds-btn" onclick="toggleBeds('3',this)">3BR</button>
+  </div>
+
   <div class="status-msg" id="status-msg"></div>
   <div id="error-area"></div>
   <div id="listings-area">
@@ -188,23 +203,23 @@
     <div class="manual-grid">
 
       <div class="manual-group">
-        <div class="manual-source">Craigslist</div>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=bushwick&sort=date" target="_blank" rel="noopener">Bushwick <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/que/roo?max_price=2100&query=ridgewood&sort=date" target="_blank" rel="noopener">Ridgewood <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=bed+stuy&sort=date" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=clinton+hill&sort=date" target="_blank" rel="noopener">Clinton Hill <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=greenpoint&sort=date" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/roo?max_price=2100&query=williamsburg&sort=date" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
+        <div class="manual-source">Craigslist · 2BR</div>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=2&max_bedrooms=2&query=bushwick&sort=date" target="_blank" rel="noopener">Bushwick <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/que/apa?min_price=3000&min_bedrooms=2&max_bedrooms=2&query=ridgewood&sort=date" target="_blank" rel="noopener">Ridgewood <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=2&max_bedrooms=2&query=bed+stuy&sort=date" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=2&max_bedrooms=2&query=clinton+hill&sort=date" target="_blank" rel="noopener">Clinton Hill <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=2&max_bedrooms=2&query=greenpoint&sort=date" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=2&max_bedrooms=2&query=williamsburg&sort=date" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
       </div>
 
       <div class="manual-group">
-        <div class="manual-source">SpareRoom</div>
-        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085484&search_type=offered&mode=edit&editing=500085085484" target="_blank" rel="noopener">Bushwick <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085421&search_type=offered&mode=edit&editing=500085085421" target="_blank" rel="noopener">Ridgewood <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085413&search_type=offered&mode=edit&editing=500085085413" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085398&search_type=offered&mode=edit&editing=500085085398" target="_blank" rel="noopener">Clinton Hill <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085581&search_type=offered&mode=edit&editing=500085085581" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
-        <a class="manual-link" href="https://www.spareroom.com/roommate/index.cgi?search_id=500085085578&search_type=offered&mode=edit&editing=500085085578" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
+        <div class="manual-source">Craigslist · 3BR</div>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=3&max_bedrooms=3&query=bushwick&sort=date" target="_blank" rel="noopener">Bushwick <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/que/apa?min_price=3000&min_bedrooms=3&max_bedrooms=3&query=ridgewood&sort=date" target="_blank" rel="noopener">Ridgewood <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=3&max_bedrooms=3&query=bed+stuy&sort=date" target="_blank" rel="noopener">Bed-Stuy <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=3&max_bedrooms=3&query=clinton+hill&sort=date" target="_blank" rel="noopener">Clinton Hill <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=3&max_bedrooms=3&query=greenpoint&sort=date" target="_blank" rel="noopener">Greenpoint <span class="manual-arrow">↗</span></a>
+        <a class="manual-link" href="https://newyork.craigslist.org/search/brk/apa?min_price=3000&min_bedrooms=3&max_bedrooms=3&query=williamsburg&sort=date" target="_blank" rel="noopener">Williamsburg <span class="manual-arrow">↗</span></a>
       </div>
 
       <div class="manual-group">
@@ -226,7 +241,7 @@
 <script>
 const PROXY = 'https://nyc-room-proxy.jwilso48.workers.dev';
 const HOODS = ['bushwick','ridgewood','bed-stuy','clinton hill','greenpoint','williamsburg'];
-const MAX_PRICE = 2100;
+const MIN_PRICE = 3000;
 
 let allListings = [];
 let seenIds = new Set();
@@ -234,25 +249,26 @@ let savedIds = new Set();
 let fetchedToday = new Set();
 let activeTab = 'all';
 let activeHood = 'all';
+let activeBeds = 'all';
 let showSeen = false;
 let searchQuery = '';
 
-try { seenIds = new Set(JSON.parse(localStorage.getItem('nyc_seen')||'[]')); } catch(e){}
-try { savedIds = new Set(JSON.parse(localStorage.getItem('nyc_saved')||'[]')); } catch(e){}
+try { seenIds = new Set(JSON.parse(localStorage.getItem('nyc_seen2')||'[]')); } catch(e){}
+try { savedIds = new Set(JSON.parse(localStorage.getItem('nyc_saved2')||'[]')); } catch(e){}
 
 const today = new Date().toISOString().split('T')[0];
-const lastDate = localStorage.getItem('nyc_fetch_date');
+const lastDate = localStorage.getItem('nyc_fetch_date2');
 if (lastDate === today) {
-  try { fetchedToday = new Set(JSON.parse(localStorage.getItem('nyc_today')||'[]')); } catch(e){}
+  try { fetchedToday = new Set(JSON.parse(localStorage.getItem('nyc_today2')||'[]')); } catch(e){}
 } else {
-  localStorage.setItem('nyc_fetch_date', today);
-  localStorage.setItem('nyc_today', '[]');
+  localStorage.setItem('nyc_fetch_date2', today);
+  localStorage.setItem('nyc_today2', '[]');
 }
 
 function savePersist() {
   try {
-    localStorage.setItem('nyc_seen', JSON.stringify([...seenIds]));
-    localStorage.setItem('nyc_saved', JSON.stringify([...savedIds]));
+    localStorage.setItem('nyc_seen2', JSON.stringify([...seenIds]));
+    localStorage.setItem('nyc_saved2', JSON.stringify([...savedIds]));
   } catch(e){}
 }
 
@@ -271,6 +287,13 @@ function setTab(tab, el) {
 function toggleHood(hood, el) {
   activeHood = hood;
   document.querySelectorAll('.hood-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderListings();
+}
+
+function toggleBeds(beds, el) {
+  activeBeds = beds;
+  document.querySelectorAll('.beds-btn').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
   renderListings();
 }
@@ -295,10 +318,17 @@ function detectHood(text) {
 }
 
 function detectPrice(text) {
-  const m = text.match(/\$\s*(\d{3,4})(?:\/mo|\/month|\s*per\s*month|\s*a\s*month)?/i);
-  if (m) return parseInt(m[1]);
-  const m2 = text.match(/(\d{3,4})\s*(?:\/mo|per\s*month|a\s*month)/i);
-  if (m2) return parseInt(m2[1]);
+  const m = text.match(/\$\s*(\d{1,2},?\d{3})(?:\/mo|\/month|\s*per\s*month|\s*a\s*month)?/i);
+  if (m) return parseInt(m[1].replace(',',''));
+  const m2 = text.match(/(\d{1,2},?\d{3})\s*(?:\/mo|per\s*month|a\s*month)/i);
+  if (m2) return parseInt(m2[1].replace(',',''));
+  return null;
+}
+
+function detectBeds(text) {
+  const t = text.toLowerCase();
+  if (/3\s*br|3\s*bed|three\s*bed|3-bed/.test(t)) return '3';
+  if (/2\s*br|2\s*bed|two\s*bed|2-bed/.test(t)) return '2';
   return null;
 }
 
@@ -334,12 +364,15 @@ async function fetchReddit() {
       const hood = detectHood(full);
       if (!hood) continue;
       const price = detectPrice(full);
-      if (price && price > MAX_PRICE) continue;
-      if (!/room|roommate|looking|available|seeking|sublet/i.test(full)) continue;
+      if (price && price < MIN_PRICE) continue;
+      const beds = detectBeds(full);
+      // require either 2BR or 3BR signal, or mention of apartment/flat
+      if (!beds && !/apartment|flat|apt\b/i.test(full)) continue;
+      if (!/apartment|flat|apt\b|available|listing|for\s*rent|looking/i.test(full)) continue;
       results.push({
         id: 'rd_' + post.id,
         title: post.title,
-        price, hood,
+        price, hood, beds,
         link: 'https://reddit.com' + post.permalink,
         source: 'reddit',
         date: new Date(post.created_utc * 1000).toISOString(),
@@ -374,9 +407,9 @@ async function fetchAll() {
   }
 
   try {
-    localStorage.setItem('nyc_today', JSON.stringify([...fetchedToday]));
-    localStorage.setItem('nyc_fetch_date', today);
-    localStorage.setItem('nyc_last_fetch', new Date().toISOString());
+    localStorage.setItem('nyc_today2', JSON.stringify([...fetchedToday]));
+    localStorage.setItem('nyc_fetch_date2', today);
+    localStorage.setItem('nyc_last_fetch2', new Date().toISOString());
   } catch(e) {}
 
   const now = new Date();
@@ -399,6 +432,7 @@ function getFiltered() {
     if (activeTab === 'jun1' && l.avail !== 'jun1') return false;
     if (activeTab === 'jun15' && l.avail !== 'jun15' && l.avail !== 'jun1') return false;
     if (activeHood !== 'all' && l.hood !== activeHood) return false;
+    if (activeBeds !== 'all' && l.beds !== activeBeds) return false;
     if (searchQuery) {
       const hay = (l.title + ' ' + (l.hood||'')).toLowerCase();
       if (!hay.includes(searchQuery)) return false;
@@ -431,7 +465,8 @@ function renderListings() {
         <div class="listing-title"><a href="${l.link}" target="_blank" rel="noopener">${l.title}</a></div>
         <div class="listing-meta">
           ${l.hood?`<span class="badge badge-hood">${l.hood}</span>`:''}
-          ${l.price?`<span class="badge badge-price">$${l.price}/mo</span>`:''}
+          ${l.beds?`<span class="badge badge-beds">${l.beds}BR</span>`:''}
+          ${l.price?`<span class="badge badge-price">$${l.price.toLocaleString()}/mo</span>`:''}
           ${availLabel?`<span class="badge badge-avail">${availLabel}</span>`:''}
           <span class="badge badge-date">${formatDate(l.date)}</span>
         </div>
@@ -463,7 +498,7 @@ function toggleSave(id) {
   document.getElementById('stat-saved').textContent = savedIds.size;
 }
 
-const lf = localStorage.getItem('nyc_last_fetch');
+const lf = localStorage.getItem('nyc_last_fetch2');
 if (lf) document.getElementById('last-fetch').textContent = new Date(lf).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
 renderListings();
 </script>
